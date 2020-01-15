@@ -12,7 +12,7 @@ The app is designed in MVP way.
 You need to obtain your API key from: 
 https://developers.themoviedb.org 
 
-Create apiKey.plist and add your key to it.
+Add your key to apiKeys.plist found in Supporting files folder.
 
 	<key>apiKey</key>
 	<string>yourApiKey</string>
