@@ -12,8 +12,13 @@ The app is designed in MVP way.
 You need to obtain your API key from: 
 https://developers.themoviedb.org 
 
-Create apiKey.plist and add your key to it.
+Add your key to apiKeys.plist found in Supporting files folder.
 
 	<key>apiKey</key>
 	<string>yourApiKey</string>
+
+
+![Simulator Screen Shot - iPhone 8 - 2020-01-15 at 13 23 40](https://user-images.githubusercontent.com/47685603/72407531-d0745e80-379a-11ea-8524-d5e6f3a7e0fc.png)
+![Simulator Screen Shot - iPhone 8 - 2020-01-15 at 13 23 57](https://user-images.githubusercontent.com/47685603/72407533-d0745e80-379a-11ea-89f8-59febad1d09b.png)
+
 
