@@ -11,7 +11,7 @@ import Alamofire
 
 struct ApiRequest {
     private var baseURL: String
-    private let language = Locale.current.languageCode ?? "en" // iso 639-1 code
+    private let language = Locale.current.languageCode ?? "en" // iso 639-1 code - по-хорошему надо добавить локализацию и всего остального
     private let sort_by = "popularity.desc"
     private let include_video = true
     static private var apiKey: String = ""

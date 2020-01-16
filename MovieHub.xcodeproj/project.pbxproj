@@ -20,6 +20,7 @@
 		158DD42A23CD27D800EDF5B0 /* MovieTableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DD42923CD27D800EDF5B0 /* MovieTableViewCell+Extensions.swift */; };
 		158DD42C23CD2D7D00EDF5B0 /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DD42B23CD2D7D00EDF5B0 /* ApiManager.swift */; };
 		158DD42E23CD3A7900EDF5B0 /* ApiImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158DD42D23CD3A7900EDF5B0 /* ApiImage.swift */; };
+		15BBE5E623CFF7BE000AEFFB /* ApiName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15BBE5E523CFF7BE000AEFFB /* ApiName.swift */; };
 		15C231EA23B5E75D00FDC0A7 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C231E923B5E75D00FDC0A7 /* Movie.swift */; };
 		15C231EE23B5E82C00FDC0A7 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C231EC23B5E82C00FDC0A7 /* MovieTableViewCell.swift */; };
 		15C231EF23B5E82C00FDC0A7 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 15C231ED23B5E82C00FDC0A7 /* MovieTableViewCell.xib */; };
@@ -51,6 +52,7 @@
 		158DD42923CD27D800EDF5B0 /* MovieTableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MovieTableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		158DD42B23CD2D7D00EDF5B0 /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
 		158DD42D23CD3A7900EDF5B0 /* ApiImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiImage.swift; sourceTree = "<group>"; };
+		15BBE5E523CFF7BE000AEFFB /* ApiName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiName.swift; sourceTree = "<group>"; };
 		15C231E923B5E75D00FDC0A7 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		15C231EC23B5E82C00FDC0A7 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		15C231ED23B5E82C00FDC0A7 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				158DD42123CD209E00EDF5B0 /* Statuses */,
 				15C2321023B7216900FDC0A7 /* ApiRequest.swift */,
 				158DD42D23CD3A7900EDF5B0 /* ApiImage.swift */,
+				15BBE5E523CFF7BE000AEFFB /* ApiName.swift */,
 				158DD41723C9BC1200EDF5B0 /* ApiPage.swift */,
 				158DD42B23CD2D7D00EDF5B0 /* ApiManager.swift */,
 				158DD41523C997BF00EDF5B0 /* NetworkManager.swift */,
@@ -344,6 +347,7 @@
 				158DD42C23CD2D7D00EDF5B0 /* ApiManager.swift in Sources */,
 				15C2320823B6D17700FDC0A7 /* TaskError.swift in Sources */,
 				15C2320A23B6FDE600FDC0A7 /* Collection+safe.swift in Sources */,
+				15BBE5E623CFF7BE000AEFFB /* ApiName.swift in Sources */,
 				15D3FDD323B5E34A00341C3C /* AppDelegate.swift in Sources */,
 				158DD3EC23C9813200EDF5B0 /* MovieDetailsViewController.swift in Sources */,
 				158DD3EE23C9821800EDF5B0 /* MovieDetailsPresenter.swift in Sources */,

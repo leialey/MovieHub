@@ -27,7 +27,7 @@ class MovieDetailsPresenter {
     
     func requestDetails(_ row: Int) {
         self.view?.isAnimating = true
-        apiManager.sendRequest(apiName: "movie", movieID: self.movie.id) { (result) in
+        apiManager.sendRequest(apiName: .movie, movieID: self.movie.id) { (result) in
             switch result {
             case .success(let jsonString):
                 let json = JSON(jsonString)

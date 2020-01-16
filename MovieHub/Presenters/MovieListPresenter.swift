@@ -67,7 +67,7 @@ class MovieListPresenter {
         apiManager.startFetching(row)
         
         //Start fetching
-        apiManager.sendRequest(apiName: "discover", movieID: nil) { (result) in
+        apiManager.sendRequest(apiName: .discover, movieID: nil) { (result) in
             switch result {
             case .success(let jsonString):
                 let json = JSON(jsonString)

@@ -25,7 +25,7 @@ class ApiManager {
         fetchStatus = .inProgress
     }
     
-     func sendRequest(apiName: String, movieID: Int?, completionHandler: @escaping (Swift.Result<Any, TaskError>) -> Void) {
+    func sendRequest(apiName: ApiName, movieID: Int?, completionHandler: @escaping (Swift.Result<Any, TaskError>) -> Void) {
         let apiRequest = constructRequest(apiName, movieID)
         //Start fetching
         //Validate - response code 200..<300
@@ -44,15 +44,13 @@ class ApiManager {
         }
     }
     //MARK: - Private methods
-    private func constructRequest(_ name: String, _ movieID: Int?) -> ApiRequest {
-        switch name {
-        case "discover":
+    private func constructRequest(_ apiName: ApiName, _ movieID: Int?) -> ApiRequest {
+        switch apiName {
+        case .discover:
             return ApiRequest(page: currentPage.pageIndex)
-        case "movie":
+        case .movie:
             guard let id = movieID else { fatalError("Movie ID not provided") }
             return ApiRequest(movieID: id)
-        default:
-            fatalError("API name not expected")
         }
     }
 }
