@@ -9,36 +9,43 @@
 import Foundation
 import Alamofire
 
-struct ApiRequest {
+struct ApiRequest: ApiRequestConstructor {
     private var baseURL: String
     private let language = Locale.current.languageCode ?? "en" // iso 639-1 code - по-хорошему надо добавить локализацию и всего остального
-    private let sort_by = "popularity.desc"
-    private let include_video = true
     static private var apiKey: String = ""
     private var params: Parameters?
+    typealias T = DataRequest
     
-    init(page: Int) {
-        baseURL = "https://api.themoviedb.org/3/discover/movie"
-        getAPIkey()
-        params = [
-            "page": page,
-            "sort_by": sort_by,
-            "api_key": ApiRequest.apiKey,
-            "language": language,
-            "include_video": include_video
-        ]
-        
+    //MARK: - Public methods
+    init(_ apiName: ApiName, _ parameter: Any?){
+        switch apiName {
+        case .discover:
+            guard let page = parameter as? Int else { fatalError("Page wrong format") }
+            baseURL = "https://api.themoviedb.org/3/discover/movie"
+            getAPIkey()
+            params = [
+                "page": page,
+                "sort_by": "popularity.desc",
+                "api_key": ApiRequest.apiKey,
+                "language": language,
+                "include_video": true
+            ]
+        case .movie:
+            guard let movieID = parameter as? Int else { fatalError("Movie ID wrong format") }
+            baseURL = "https://api.themoviedb.org/3/movie/\(movieID)/videos"
+            getAPIkey()
+            params = [
+                "api_key": ApiRequest.apiKey,
+                "language": language
+            ]
+        }
     }
     
-    init(movieID: Int) {
-        baseURL = "https://api.themoviedb.org/3/movie/\(movieID)/videos"
-        getAPIkey()
-        params = [
-            "api_key": ApiRequest.apiKey,
-            "language": language
-        ]
+    func getDataRequest() -> T {
+        return Alamofire.request(self.baseURL, method: .get, parameters: self.params)
     }
     
+    //MARK: - Private methods
     private func getAPIkey() {
         if ApiRequest.apiKey.isEmpty {
             guard let path = Bundle.main.path(forResource: "apiKeys", ofType: "plist"),
@@ -49,9 +56,7 @@ struct ApiRequest {
         }
     }
     
-    func getDataRequest() -> DataRequest {
-        return Alamofire.request(self.baseURL, method: .get, parameters: self.params)
-    }
+    
 }
 
 

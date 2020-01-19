@@ -9,16 +9,19 @@
 import Foundation
 import SwiftyJSON
 
-class MovieListPresenter {
+class MovieListPresenter: MovieListPresenting {
+    
     private var movies = [Movie]() // list of movies
     weak private var view: MovieView?
-    private var persistanceManager = PersistanceManager() // to mark favourite movies
-    private var apiManager = ApiManager()
+    private var persistanceManager: PersistanceManagement // to mark favourite movies
+    private var apiManager: ApiManagement
     var rowsToDisplay: Int = 1 //MovieView's table will display total movies + 1 to show activity indicator in the last row if not all movies are fetched from the API yet
     
     // MARK: - Public
-    init(_ view: MovieView) {
+    required init(_ view: MovieView) {
         self.view = view
+        apiManager = ApiManager()
+        persistanceManager = PersistanceManager()
         NetworkManager.shared.onConnected = { [weak self] in
             //Once connection restored, load all requested movies
             if let movieIndex = self?.apiManager.currentPage.movieIndex {
@@ -33,9 +36,9 @@ class MovieListPresenter {
         }
     }
     
-    func requestDetails(_ cell: MovieCell, _ row: Int) {
+    func requestMovieDetails(_ cell: MovieCell, _ row: Int) {
         guard let movie = self.movies[safe: row] else { return }
-        let presenter = MovieDetailsPresenter(movie)
+        let presenter: MovieDetailsPresenting = MovieDetailsPresenter(movie)
         presenter.requestDetails(row)
         self.view?.showDetails(presenter)
     }
@@ -67,7 +70,7 @@ class MovieListPresenter {
         apiManager.startFetching(row)
         
         //Start fetching
-        apiManager.sendRequest(apiName: .discover, movieID: nil) { (result) in
+        apiManager.sendRequest(apiName: .discover, parameter: nil) { (result) in
             switch result {
             case .success(let jsonString):
                 let json = JSON(jsonString)

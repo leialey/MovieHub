@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 class MovieDetailsViewController: UIViewController {
-    var presenter: MovieDetailsPresenter?
+    var presenter: MovieDetailsPresenting?
     var isAnimating: Bool = true  {
         didSet {
             isAnimating ? loadingIndicator.startAnimating() : loadingIndicator.stopAnimating()

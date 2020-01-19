@@ -12,7 +12,7 @@ import Network
 class NetworkManager {
     
     static let shared = NetworkManager()
-    var monitor: NWPathMonitor?
+    private var monitor: NWPathMonitor?
     var onConnected: (()->())?
     
     private init() {

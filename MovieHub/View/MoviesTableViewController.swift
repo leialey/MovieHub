@@ -12,7 +12,7 @@ import UIKit
 class MoviesTableViewController: UITableViewController {
     
     private let cellID = "MovieCell"
-    private var presenter: MovieListPresenter?
+    private var presenter: MovieListPresenting?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +42,7 @@ class MoviesTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? MovieTableViewCell else { fatalError("Cannot cast to MovieTableViewCell")}
-        presenter?.requestDetails(cell, indexPath.row)
+        presenter?.requestMovieDetails(cell, indexPath.row)
     }
     
 }

@@ -11,7 +11,7 @@ import Foundation
 protocol MovieView: class {
     func reloadData()
     func showStatus(_ statusMessage: String?)
-    func showDetails(_ presenter: MovieDetailsPresenter)
+    func showDetails(_ presenter: MovieDetailsPresenting)
 }
 
 protocol MovieCell: MovieTableViewCell {

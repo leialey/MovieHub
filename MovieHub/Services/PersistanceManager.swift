@@ -9,12 +9,12 @@
 import UIKit
 import CoreData
 
-struct PersistanceManager {
+class PersistanceManager: PersistanceManagement {
     private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     private var favouriteMovies = [FavouriteMovie]()
     
     //MARK: - Public methods
-    mutating func fetchFavourites() throws {
+    func fetchFavourites() throws {
         let request: NSFetchRequest<FavouriteMovie> = FavouriteMovie.fetchRequest()
         do {
             favouriteMovies = try context.fetch(request)
@@ -24,7 +24,7 @@ struct PersistanceManager {
     }
     
     
-    mutating func updateFavourite(movie: Movie) throws {
+    func updateFavourite(movie: Movie) throws {
         if isFavourite(movie) {
             try deleteFavourite(movie)
         } else {
@@ -43,13 +43,13 @@ struct PersistanceManager {
     
     //MARK: - Private methods
     
-    private mutating func saveFavourite(_ movie: Movie) throws {
+    private func saveFavourite(_ movie: Movie) throws {
         let favouriteMovie = FavouriteMovie(context: context)
         favouriteMovie.id = Int64(movie.id)
         favouriteMovies.append(favouriteMovie)
     }
     
-    private mutating func deleteFavourite(_ movie: Movie) throws {
+    private func deleteFavourite(_ movie: Movie) throws {
         guard let index = favouriteMovies.firstIndex(where: {$0.id == movie.id}) else { return }
         context.delete(favouriteMovies[index])
         favouriteMovies.remove(at: index)

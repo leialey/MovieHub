@@ -9,16 +9,17 @@
 import Foundation
 import SwiftyJSON
 
-class MovieDetailsPresenter {
+class MovieDetailsPresenter: MovieDetailsPresenting {
     weak var view: MovieDetailsView?
     private var movie: Movie
-    private let apiManager = ApiManager()
+    private let apiManager: ApiManagement
     private let youtubeURL = "https://www.youtube.com/embed/"
     private let providerName = "YouTube"
-
+    
     // MARK: - Public
-    init(_ movie: Movie) {
+    required init(_ movie: Movie) {
         self.movie = movie
+        apiManager = ApiManager()
     }
     
     func getMovie() -> Movie {
@@ -27,7 +28,7 @@ class MovieDetailsPresenter {
     
     func requestDetails(_ row: Int) {
         self.view?.isAnimating = true
-        apiManager.sendRequest(apiName: .movie, movieID: self.movie.id) { (result) in
+        apiManager.sendRequest(apiName: .movie, parameter: self.movie.id) { (result) in
             switch result {
             case .success(let jsonString):
                 let json = JSON(jsonString)
@@ -44,17 +45,17 @@ class MovieDetailsPresenter {
             }            
         }
     }
-
+    
     // MARK: - Private
     private func parseJSONVideo(_ json: JSON) -> URL? {
         
         //Результат содержит ключи различных видео: трейлеры, клипы, тизеры и др. Поскольку в требованиях не специфицировано, беру первый по списку
         //Также недавно помимо Ютуб стали добавлять Вимео - для простоты я беру только Ютуб
-
+        
         if let videoKey = json["results"][0]["key"].string, let videoProvider = json["results"][0]["site"].string, videoProvider == providerName {
             return URL(string: youtubeURL+videoKey)
         }
-            return nil
+        return nil
     }
-
+    
 }

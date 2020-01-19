@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ApiManager {
+class ApiManager: ApiManagement {
     var currentPage = ApiPage() // current requested page from API
     private var fetchStatus: FetchStatus = .initial
     
@@ -25,8 +25,8 @@ class ApiManager {
         fetchStatus = .inProgress
     }
     
-    func sendRequest(apiName: ApiName, movieID: Int?, completionHandler: @escaping (Swift.Result<Any, TaskError>) -> Void) {
-        let apiRequest = constructRequest(apiName, movieID)
+    func sendRequest(apiName: ApiName, parameter: Any?, completionHandler: @escaping (Swift.Result<Any, TaskError>) -> Void) {
+        let apiRequest = constructRequest(apiName, parameter)
         //Start fetching
         //Validate - response code 200..<300
         apiRequest.getDataRequest().validate().responseJSON { response in
@@ -44,13 +44,12 @@ class ApiManager {
         }
     }
     //MARK: - Private methods
-    private func constructRequest(_ apiName: ApiName, _ movieID: Int?) -> ApiRequest {
+    private func constructRequest(_ apiName: ApiName, _ parameter: Any?) -> ApiRequest {
         switch apiName {
         case .discover:
-            return ApiRequest(page: currentPage.pageIndex)
+            return ApiRequest(apiName, currentPage.pageIndex)
         case .movie:
-            guard let id = movieID else { fatalError("Movie ID not provided") }
-            return ApiRequest(movieID: id)
+            return ApiRequest(apiName, parameter)
         }
     }
 }

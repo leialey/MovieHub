@@ -25,7 +25,7 @@ extension MoviesTableViewController: MovieView {
         }
     }
     
-    func showDetails(_ presenter: MovieDetailsPresenter) {
+    func showDetails(_ presenter: MovieDetailsPresenting) {
         guard let nextVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieDetailsViewController") as? MovieDetailsViewController else {fatalError("Cannot find MovieDetailsViewController")}
         nextVC.presenter = presenter
         show(nextVC, sender: self)
