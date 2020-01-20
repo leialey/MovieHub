@@ -13,27 +13,32 @@ public final class NetworkManager {
     
     public static let shared = NetworkManager()
     private var monitor: NWPathMonitor?
+    private let concurrentQueue = DispatchQueue(label: "networkQueue", attributes: .concurrent)
     var onConnected: (()->())?
     
     private init() {
     }
     
     func startMonitoring() {
-        guard monitor == nil else { return }
-        monitor = NWPathMonitor()
-        let queue = DispatchQueue(label: "NetStatusMonitor")
-        monitor?.pathUpdateHandler = { _ in
-            if self.monitor?.currentPath.status == .satisfied {
-                self.onConnected?()
+        concurrentQueue.async(flags: .barrier) {
+            guard self.monitor == nil else { return }
+            self.monitor = NWPathMonitor()
+            let queue = DispatchQueue(label: "NetStatusMonitor")
+            self.monitor?.pathUpdateHandler = { _ in
+                if self.monitor?.currentPath.status == .satisfied {
+                    self.onConnected?()
+                }
             }
+            self.monitor?.start(queue: queue)
         }
-        monitor?.start(queue: queue)
     }
     
     func stopMonitoring() {
-        guard monitor != nil else { return }
-        monitor!.cancel()
-        monitor = nil
+        concurrentQueue.async(flags: .barrier) {
+            guard self.monitor != nil else { return }
+            self.monitor!.cancel()
+            self.monitor = nil
+        }
     }
     
     deinit {
