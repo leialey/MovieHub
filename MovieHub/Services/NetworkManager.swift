@@ -9,9 +9,9 @@
 import Foundation
 import Network
 
-class NetworkManager {
+public final class NetworkManager {
     
-    static let shared = NetworkManager()
+    public static let shared = NetworkManager()
     private var monitor: NWPathMonitor?
     var onConnected: (()->())?
     
