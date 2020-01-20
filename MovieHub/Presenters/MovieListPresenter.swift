@@ -22,12 +22,7 @@ class MovieListPresenter: MovieListPresenting {
         self.view = view
         apiManager = ApiManager()
         persistanceManager = PersistanceManager()
-        NetworkManager.shared.onConnected = { [weak self] in
-            //Once connection restored, load all requested movies
-            if let movieIndex = self?.apiManager.currentPage.movieIndex {
-                self?.fetchMovies(movieIndex)
-            }
-        }
+        NotificationCenter.default.addObserver(self, selector: #selector(networkStatusChanged), name: .connected, object: nil)
         NetworkManager.shared.startMonitoring()
         do {
             try persistanceManager.fetchFavourites()
@@ -35,6 +30,8 @@ class MovieListPresenter: MovieListPresenting {
             self.view?.showStatus(TaskError.errorDB.errorDescription)
         }
     }
+    
+    
     
     func requestMovieDetails(_ cell: MovieCell, _ row: Int) {
         guard let movie = self.movies[safe: row] else { return }
@@ -88,7 +85,6 @@ class MovieListPresenter: MovieListPresenting {
         
         let totalCount = json["total_results"].intValue
         if totalCount <= movies.count { //All movies fetched - no need to monitor network anymore
-            NetworkManager.shared.stopMonitoring()
             rowsToDisplay = totalCount
         } else {
             rowsToDisplay = movies.count + 1
@@ -105,5 +101,11 @@ class MovieListPresenter: MovieListPresenting {
             self.view?.showStatus(TaskError.errorDB.errorDescription)
         }
         self.view?.reloadData()
+    }
+    
+    @objc private func networkStatusChanged() {
+        if let movieIndex = apiManager.currentPage.movieIndex {
+            fetchMovies(movieIndex)
+        }
     }
 }

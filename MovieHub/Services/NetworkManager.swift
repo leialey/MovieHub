@@ -9,15 +9,16 @@
 import Foundation
 import Network
 
+
 public final class NetworkManager {
     
     public static let shared = NetworkManager()
     private var monitor: NWPathMonitor?
     private let concurrentQueue = DispatchQueue(label: "networkQueue", attributes: .concurrent)
-    var onConnected: (()->())?
     
     private init() {
     }
+    
     
     func startMonitoring() {
         concurrentQueue.async(flags: .barrier) {
@@ -26,7 +27,7 @@ public final class NetworkManager {
             let queue = DispatchQueue(label: "NetStatusMonitor")
             self.monitor?.pathUpdateHandler = { _ in
                 if self.monitor?.currentPath.status == .satisfied {
-                    self.onConnected?()
+                    NotificationCenter.default.post(name: .connected, object: nil)
                 }
             }
             self.monitor?.start(queue: queue)

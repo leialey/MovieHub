@@ -38,6 +38,7 @@
 		15FD698D23D4376D0003633F /* ServiceProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FD698C23D4376D0003633F /* ServiceProtocols.swift */; };
 		15FD698F23D43CD80003633F /* PresenterProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FD698E23D43CD80003633F /* PresenterProtocols.swift */; };
 		15FD699123D536900003633F /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FD699023D536900003633F /* AppSettings.swift */; };
+		15FD699323D548F50003633F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FD699223D548F50003633F /* Notifications.swift */; };
 		D605BCFF1F199C38D467BFEC /* Pods_MovieHub.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DE34F14F50E8BD1C88C1F9B9 /* Pods_MovieHub.framework */; };
 /* End PBXBuildFile section */
 
@@ -75,6 +76,7 @@
 		15FD698C23D4376D0003633F /* ServiceProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProtocols.swift; sourceTree = "<group>"; };
 		15FD698E23D43CD80003633F /* PresenterProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterProtocols.swift; sourceTree = "<group>"; };
 		15FD699023D536900003633F /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		15FD699223D548F50003633F /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		2EC24BCB5B3877DB23AF50D5 /* Pods-MovieHub.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.debug.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.debug.xcconfig"; sourceTree = "<group>"; };
 		DE34F14F50E8BD1C88C1F9B9 /* Pods_MovieHub.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieHub.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFBE137C06B786822D69F3EB /* Pods-MovieHub.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieHub.release.xcconfig"; path = "Target Support Files/Pods-MovieHub/Pods-MovieHub.release.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			children = (
 				15C2320723B6D17700FDC0A7 /* TaskError.swift */,
 				158DD41923C9C2EF00EDF5B0 /* FetchStatus.swift */,
+				15FD699223D548F50003633F /* Notifications.swift */,
 			);
 			path = Statuses;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				15FD699123D536900003633F /* AppSettings.swift in Sources */,
 				15D3FDE823B5E3C500341C3C /* MovieListPresenter.swift in Sources */,
 				158DD41423C995ED00EDF5B0 /* MovieHub.xcdatamodeld in Sources */,
+				15FD699323D548F50003633F /* Notifications.swift in Sources */,
 				158DD41C23C9C30A00EDF5B0 /* ViewProtocols.swift in Sources */,
 				158DD41E23CACF4100EDF5B0 /* PersistanceManager.swift in Sources */,
 				15D3FDD723B5E34A00341C3C /* MoviesTableViewController.swift in Sources */,

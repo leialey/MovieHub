@@ -32,4 +32,8 @@ protocol PersistanceManagement {
     func isFavourite(_ movie: Movie) -> Bool
 }
 
+protocol NetworkManagerDelegate {
+    func onConnected() 
+}
+
 
